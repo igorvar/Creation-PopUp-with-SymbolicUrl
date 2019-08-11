@@ -19,9 +19,9 @@ switch (name)
 	{
 		case "MyMethod":
     			var ips = theApplication().NewPropertySet();
-			    var ops = theApplication().NewPropertySet();
-			    ips.SetProperty("SWESP", "true");
-          ips.SetProperty("SWETA", "Name of popup Applet");
-          ops = this.InvokeMethod("ShowPopup",ips);
-          break;
+			var ops = theApplication().NewPropertySet();
+			ips.SetProperty("SWESP", "true");
+          		ips.SetProperty("SWETA", "Name of popup Applet");
+          		ops = this.InvokeMethod("ShowPopup",ips);
+          	break;
    }
