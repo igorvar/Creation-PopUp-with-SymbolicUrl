@@ -9,5 +9,19 @@ http://siebel.ittoolbox.com/groups/technical-functional/siebel-dev-l/symbolic-ur
 
 4. В администрации на поле Symbolic URL создать новую запись, задать ей SSO Disposition = Form Redirect. В Symbolic URL Arguments создать следующие записи с Argument Type = Command: FreePopup = True; FullWindow = True (для открытия апплета в новой вкладке) или PopupSize = 750x500 (для открытия апплета в новом окне)
 
-Примечание.
-SSO Disposition = Form Redirect предполагает отправку http запросов методом POST. Если требуется использовать метод GET, то в Symbolic URL Arguments нужно добавить еще команду с любым именеи, и со значением GetRequest.
+Примечания:
+1. SSO Disposition = Form Redirect предполагает отправку http запросов методом POST. Если требуется использовать метод GET, то в Symbolic URL Arguments нужно добавить еще команду с любым именеи, и со значением GetRequest.
+
+2. ShowPopup регистрозваисим для свойства CanInvokeMethod, но регистронезависим при основной работе. Это значит, что если создать два элемента управления с Method Invoked = ShowPopup и Method Invoked = SHowPopup, то их доступностью можно упаравлять по разному, и вызывать они будут разные аплеты
+
+3. Для использования собственного метода (не ShowPopup) на браузер скрипте в Applet_InvokeMethod или Applet_PreInvokeMethod написать следующий код:
+switch (name)
+	{
+		case "MyMethod":
+    			var ips = theApplication().NewPropertySet();
+			    var ops = theApplication().NewPropertySet();
+			    ips.SetProperty("SWESP", "true");
+          ips.SetProperty("SWETA", "Name of popup Applet");
+          ops = this.InvokeMethod("ShowPopup",ips);
+          break;
+   }
