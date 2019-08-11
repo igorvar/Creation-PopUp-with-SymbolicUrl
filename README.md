@@ -24,4 +24,4 @@ switch (name)
           		ips.SetProperty("SWETA", "Name of popup Applet");
           		ops = this.InvokeMethod("ShowPopup",ips);
           	break;
-   }
+   	}
